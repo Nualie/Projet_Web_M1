@@ -23,7 +23,7 @@ database: 'postgres'
 })
 
 Change the "password" with your own password for pgadmin.
-Enter the command 'npm start', and then open your web browser and enter the following URL : 'http://localhost:3000
+Enter the command 'npm start', and then open your web browser and enter the following URL : 'http://localhost:3000'
 
 
 <Sources : >
