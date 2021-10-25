@@ -1,0 +1,112 @@
+<!doctype>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <title>The starts are the only limit!</title>
+        <!-- Load Vue followed by Vue Router -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/http-vue-loader/src/httpVueLoader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+          <header>
+            <h1 class="titre">SPACE CAPITALISM</h1>
+              <nav class="tableform">
+                <router-link to='/'><h1>Home</h1></router-link>
+                <router-link to='/Planets'><h1>Planets</h1></router-link>
+                <router-link to='/panier'><h1>Cart</h1></router-link>
+                <div v-if="isConnected" id="app" class="connexion">
+                  <h1>Bonjour</h1> <h1 class="user">{{ user.email }} </h1>
+                  <router-link to='/client'><h1>Espace client</h1></router-link>
+                  <a><h1 @click="logout">Log out</h1></a>
+                </div>
+                <div v-else class="connexion">
+                  <router-link to='/register'><h1>Register</h1></router-link>
+                  <router-link to='/login'><h1>Login</h1></router-link>
+                </div>
+              </nav>
+          </header>
+          <main>
+            <router-view
+              :user="user"
+              :is-connected="isConnected"
+              :articles="articles"
+              :panier="panier"
+              @pay="pay"
+              @login="login"
+              @add-article="addArticle"
+              @delete-article="deleteArticle"
+              @update-article="updateArticle"
+            ></router-view>
+          </main>
+        </div>
+        <script src="/vue-application.js"></script>
+    </body>
+</html>
+
+<style scoped>
+
+      html {
+        font-family: sans-serif;
+      }
+
+      body {
+        margin: 0;
+      }
+      header{
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        width: 100%;
+        height:70px;
+        background-color: white;
+      }
+      nav{
+        display:flex;
+        justify-content: right;
+        margin-right: 0%; 
+        position: relative;
+      }
+      .connexion{
+        display:flex;
+        justify-content: right;
+        margin-right: 15%;
+      }
+      .titre{
+        flex: 1 1 auto;
+        margin: left;
+        text-align: center;
+        letter-spacing: 1px;
+        font-weight: bold;
+        font-size: 1.875rem;
+      }
+      h1{
+        margin: 10px;
+        color:black;
+        position: relative;
+      }
+      a{
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .tableform {
+        width: 100%;
+        height: 100%;
+        line-height: 50px;
+        white-space: nowrap;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+        overflow-x: scroll;
+        overflow-y: hidden;
+        text-align: justify;
+        background: #F4F5F6;
+        padding: 0px 5px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+      .user {
+        color: #FF6200;
+      }
+</style>
